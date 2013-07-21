@@ -54,4 +54,25 @@ class CommonAncestorFinderTest {
     assertFalse(isSameLLR)
     assertTrue(isSameDifferentTrees)
   }
+  
+  @Test
+  def testGetNodesOnSameLevel() : Unit = {
+    //WHEN
+    val lr = checker.getNodesOnSameLevel(leftLeftA, rightA)
+    
+    //THEN
+    assertEquals(lr._1, leftA)
+    assertEquals(lr._2, rightA)
+  }
+  
+  @Test
+  def testGetNodesOnSameLevelDifferentTrees() : Unit = {
+    //WHEN
+    val lr = checker.getNodesOnSameLevel(rightB, leftLeftA)
+    
+    //THEN
+    assertEquals(lr._1, rightB)
+    assertEquals(lr._2, leftA)
+  }
+
 }

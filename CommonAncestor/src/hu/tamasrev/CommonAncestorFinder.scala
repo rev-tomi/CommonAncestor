@@ -18,4 +18,13 @@ object CommonAncestorFinder {
     val d2 = getDepth(n2)
     d1 == d2
   }
+  
+  @tailrec
+  def getNodesOnSameLevel(n1 : Node, n2 : Node) : (Node, Node) = {
+    val d1 = getDepth(n1)
+    val d2 = getDepth(n2)
+    if (d1 == d2) (n1, n2)
+    else if (d1 < d2) getNodesOnSameLevel(n1, n2.getParent)
+    else getNodesOnSameLevel(n1.getParent, n2)
+  }
 }
