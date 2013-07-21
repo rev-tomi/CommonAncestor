@@ -15,12 +15,6 @@ object CommonAncestorFinder {
     getDepth(n, 0)
   }
   
-  def isSameLevel(n1 : Node, n2 : Node) : Boolean = { //TODO delete me 
-    val d1 = getDepth(n1)
-    val d2 = getDepth(n2)
-    d1 == d2
-  }
-  
   @tailrec
   def getNodesOnSameLevel(n1 : Node, n2 : Node) : (Node, Node) = {
     val d1 = getDepth(n1)

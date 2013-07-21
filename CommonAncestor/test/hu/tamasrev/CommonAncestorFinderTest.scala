@@ -53,19 +53,6 @@ class CommonAncestorFinderTest {
   }
   
   @Test
-  def testSameDepth() : Unit = {
-    //WHEN
-    val isSameLR = checker.isSameLevel(leftA, rightA)
-    val isSameLLR = checker.isSameLevel(leftLeftA, rightA)
-    val isSameDifferentTrees = checker.isSameLevel(leftLeftA, leftLeftB)
-    
-    //THEN
-    assertTrue(isSameLR)
-    assertFalse(isSameLLR)
-    assertTrue(isSameDifferentTrees)
-  }
-  
-  @Test
   def testGetNodesOnSameLevel() : Unit = {
     //WHEN
     val lr = checker.getNodesOnSameLevel(leftLeftA, rightA)
