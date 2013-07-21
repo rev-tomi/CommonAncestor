@@ -27,4 +27,16 @@ object CommonAncestorFinder {
     else if (d1 < d2) getNodesOnSameLevel(n1, n2.getParent)
     else getNodesOnSameLevel(n1.getParent, n2)
   }
+  
+  def getCommonAncestor(n1: Node, n2: Node) : Node = {
+    val lr = getNodesOnSameLevel(n1, n2)
+    getCommonAncestorFromSameLevel(lr._1, lr._2)
+  }
+  
+  @tailrec
+  private def getCommonAncestorFromSameLevel(n1: Node, n2: Node) : Node = {
+    if (n1 == n2) n1
+    else if (n1.getParent == NoNode) throw new IllegalArgumentException("Different trees")
+    else getCommonAncestorFromSameLevel(n1.getParent, n2.getParent)
+  }
 }
