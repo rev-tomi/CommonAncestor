@@ -1,30 +1,26 @@
 package hu.tamasrev
 
 import org.testng.annotations.Test;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test
 import org.testng.annotations.BeforeClass
 import org.testng.Assert._
-import org.testng.annotations.ExpectedExceptions
 
 class CommonAncestorFinderTest {
 
-  val rootA : MutableNode = new Root()
-  val leftA : MutableNode = new BuildingNode()
-  val rightA : MutableNode = new BuildingNode()
-  val leftLeftA : MutableNode = new Leaf()
-  val leftRightA : MutableNode = new BuildingNode()
-  val leftRightLeftA : MutableNode = new Leaf() 
+  private val rootA : MutableNode = new Root()
+  private val leftA : MutableNode = new BuildingNode()
+  private val rightA : MutableNode = new BuildingNode()
+  private val leftLeftA : MutableNode = new Leaf()
+  private val leftRightA : MutableNode = new BuildingNode()
+  private val leftRightLeftA : MutableNode = new Leaf() 
   
-  val rootB : MutableNode = new Root()
-  val leftB : MutableNode = new BuildingNode()
-  val rightB : MutableNode = new BuildingNode()
-  val leftLeftB : MutableNode = new Leaf()
+  private val rootB : MutableNode = new Root()
+  private val leftB : MutableNode = new BuildingNode()
+  private val rightB : MutableNode = new BuildingNode()
+  private val leftLeftB : MutableNode = new Leaf()
   
-  val checker = CommonAncestorFinder
+  private val checker = CommonAncestorFinder
     
-  @BeforeMethod
-@BeforeClass
+  @BeforeClass
   def setUp() : Unit = {
     rootA.setLeft(leftA)
     rootA.setRight(rightA)
