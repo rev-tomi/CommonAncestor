@@ -20,5 +20,25 @@ class NodeTest {
     assertEquals(left, NoNode)
     assertEquals(right, NoNode)
   }
+  
+  @Test
+  def testBuildTree() : Unit = {
+    //GIVEN
+    val root : MutableNode = new Root()
+    val left : MutableNode = new BuildingNode()
+    val right : MutableNode = new BuildingNode()
+    val leftLeft : MutableNode = new Leaf()
+    
+    //WHEN
+    root.setLeft(left)
+    root.setRight(right)
+    left.setLeft(leftLeft)
+    
+    //THEN
+    assertSame(left, root.getLeft())
+    assertSame(root, left.getParent())
+    assertSame(leftLeft, left.getLeft())
+    assertSame(left, leftLeft.getParent())
+  }
 
 }
