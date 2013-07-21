@@ -1,5 +1,7 @@
 package hu.tamasrev
 
+import scala.annotation.tailrec
+
 object LoopFinder {
 
   abstract class NextStep {
@@ -16,6 +18,7 @@ object LoopFinder {
   }
   
   def isInLoop(n : Node) : Boolean = {
+    @tailrec
     def isInLoop(head : Node, behind : Node, step : NextStep) : Boolean = {
       if (head == behind) true
       else if (head == NoNode) false

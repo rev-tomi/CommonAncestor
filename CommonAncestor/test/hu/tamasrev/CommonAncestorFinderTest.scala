@@ -18,6 +18,9 @@ class CommonAncestorFinderTest {
   private val rightB : MutableNode = new BuildingNode()
   private val leftLeftB : MutableNode = new Leaf()
   
+  private val rootLoop = new BuildingNode()
+  private val rightLoop = new BuildingNode()
+  
   private val checker = CommonAncestorFinder
     
   @BeforeClass
@@ -31,6 +34,9 @@ class CommonAncestorFinderTest {
     rootB.setLeft(leftB)
     rootB.setRight(rightB)
     leftB.setLeft(leftLeftB)
+    
+    rootLoop.setRight(rightLoop)
+    rightLoop.setLeft(rootLoop)
   }
   
   @Test
@@ -93,11 +99,22 @@ class CommonAncestorFinderTest {
     try {
       //WHEN
       val ancestor = checker.getCommonAncestor(leftLeftB, leftRightLeftA)
+      fail("An IllegalArgumentException should've been thrown")
     } catch {
       //THEN
       case iae : IllegalArgumentException => assertEquals(iae.getMessage(), "Different trees")
     }
   }
   
-  //TODO loop check
+  @Test
+  def getNodesCommonAncestorRoot() : Unit = {
+    try {
+      //WHEN
+      val ancestor = checker.getCommonAncestor(leftLeftB, rootLoop)
+      fail("An IllegalArgumentException should've been thrown")
+    } catch {
+      //THEN
+      case iae : IllegalArgumentException => assertEquals(iae.getMessage(), "Loop detected")
+    }
+  }
 }

@@ -4,6 +4,8 @@ import scala.annotation.tailrec
 
 object CommonAncestorFinder {
 
+  private val loopFinder = LoopFinder
+  
   def getDepth(n : Node) : Int = {
     @tailrec
     def getDepth(n : Node, depth : Int) : Int = {
@@ -13,7 +15,7 @@ object CommonAncestorFinder {
     getDepth(n, 0)
   }
   
-  def isSameLevel(n1 : Node, n2 : Node) : Boolean = {
+  def isSameLevel(n1 : Node, n2 : Node) : Boolean = { //TODO delete me 
     val d1 = getDepth(n1)
     val d2 = getDepth(n2)
     d1 == d2
@@ -29,6 +31,8 @@ object CommonAncestorFinder {
   }
   
   def getCommonAncestor(n1: Node, n2: Node) : Node = {
+    if (loopFinder.isInLoop(n1) || loopFinder.isInLoop(n2)) throw new IllegalArgumentException("Loop detected")
+    
     val lr = getNodesOnSameLevel(n1, n2)
     getCommonAncestorFromSameLevel(lr._1, lr._2)
   }
